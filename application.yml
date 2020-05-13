@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+spring:
+  profiles: dev
+  application:
+    name: SpringCould-dept-config-sc-dev
+---                               
+spring:
+  profiles: test
+  application:
+    name: SpringCould-dept-config-sc-test
+   
