@@ -8,18 +8,19 @@ server:
 spring:
   profiles: dev
   application:
-    name: SpringCould-Config-client 
+    name: springcould-config-client   
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-dev:7001/eureka/
 ---
 server:
-  port: 8202
+    port: 8202
+    
 spring:
   profiles: test
   application:
-    name: SpringCould-Config-client
+    name: springcould-config-client
 eureka:
   client:
     service-url:
