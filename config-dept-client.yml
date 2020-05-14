@@ -64,7 +64,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource                #当前数据源操作类型，在pom.xml中有配置（最好的连接池）
     driver-class-name: com.mysql.jdbc.Driver                   #mysql驱动  (MySQL公司为了保持兼容性让org.gjt.mm.mysql.Driver对com.mysql.jdbc.Driver进行了简单的继承) 
-    url: jdbc:mysql://localhost:3306/could01dept
+    url: jdbc:mysql://localhost:3306/could02dept
     username: root
     password: root
      #数据源配置
