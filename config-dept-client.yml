@@ -1,0 +1,94 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+server:
+  port: 8001 #每个工程都要有一个端口号
+  
+mybatis:                                 #mybatis整合
+  config-location: classpath:conf.xml    #读取mybatis配置文件
+  type-aliases-package: com.sc.entity    #所有javabean别名所在的包
+  mapper-locations:
+    - classpath:com/sc/mapper/*.xml               #mapper映射文件
+    
+spring:
+  profiles: dev
+  application:
+    name: SpringCould-dept                               #这个名字很重要，很重要，很重要（这个就是微服务的名字）
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource                #当前数据源操作类型，在pom.xml中有配置（最好的连接池）
+    driver-class-name: com.mysql.jdbc.Driver                   #mysql驱动  (MySQL公司为了保持兼容性让org.gjt.mm.mysql.Driver对com.mysql.jdbc.Driver进行了简单的继承) 
+    url: jdbc:mysql://localhost:3306/could01dept
+    username: root
+    password: root
+     #数据源配置
+    dbcp2:
+      min-idle: 5                                                 #数据库连接池的最小维持连接数（因为每一个微服务都可能会有不同的数据库）
+      initial-size: 5                                             #初始化连接数
+      max-total: 5                                                #最大连接数
+      max-wait-millis: 200                                        #最大连接超时时间
+          
+
+
+#将本服务注册进Eureka
+eureka:
+  client:
+   service-url:
+        defaultZone: http://localhost:7001/eureka  #注册入7001Eureka
+  
+  instance:
+    instance-id: SpringCould-dept8001                                 #将Spring Eureka注册表中的 Status中的服务名修改的没有前面的localhost
+    prefer-ip-address: true                                           #访问路径可以显示IP地址
+    
+    
+info:                                                                 #配置Spring Eureka注册表中的 Status中点击的服务名后的信息
+  app.name: sc-SpringCould                                       #配置工程名称
+  company.name: www.sc.com                                            #公司名称
+  build.artifactId: $project.artifactId$                              #本工程名称（动态获取）
+  build.version: $project.version$                                    #本工程版本  
+---
+server:
+  port: 8001 #每个工程都要有一个端口号
+  
+mybatis:                                 #mybatis整合
+  config-location: classpath:conf.xml    #读取mybatis配置文件
+  type-aliases-package: com.sc.entity    #所有javabean别名所在的包
+  mapper-locations:
+    - classpath:com/sc/mapper/*.xml               #mapper映射文件
+    
+spring:
+  profiles: test
+  application:
+    name: SpringCould-dept                               #这个名字很重要，很重要，很重要（这个就是微服务的名字）
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource                #当前数据源操作类型，在pom.xml中有配置（最好的连接池）
+    driver-class-name: com.mysql.jdbc.Driver                   #mysql驱动  (MySQL公司为了保持兼容性让org.gjt.mm.mysql.Driver对com.mysql.jdbc.Driver进行了简单的继承) 
+    url: jdbc:mysql://localhost:3306/could01dept
+    username: root
+    password: root
+     #数据源配置
+    dbcp2:
+      min-idle: 5                                                 #数据库连接池的最小维持连接数（因为每一个微服务都可能会有不同的数据库）
+      initial-size: 5                                             #初始化连接数
+      max-total: 5                                                #最大连接数
+      max-wait-millis: 200                                        #最大连接超时时间
+          
+
+
+#将本服务注册进Eureka
+eureka:
+  client:
+   service-url:
+        defaultZone: http://localhost:7001/eureka  #注册入7001Eureka
+  
+  instance:
+    instance-id: SpringCould-dept8001                                 #将Spring Eureka注册表中的 Status中的服务名修改的没有前面的localhost
+    prefer-ip-address: true                                           #访问路径可以显示IP地址
+    
+    
+info:                                                                 #配置Spring Eureka注册表中的 Status中点击的服务名后的信息
+  app.name: sc-SpringCould                                       #配置工程名称
+  company.name: www.sc.com                                            #公司名称
+  build.artifactId: $project.artifactId$                              #本工程名称（动态获取）
+  build.version: $project.version$                                    #本工程版本  
